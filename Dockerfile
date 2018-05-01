@@ -26,7 +26,7 @@ RUN mkdir -p /daemon && mkdir -p /daemon/data && mkdir -p /daemon
 WORKDIR /daemon/
 RUN git clone https://github.com/valiant1x/intensecoin.git src
 WORKDIR /daemon/src/
-RUN make release-static
+RUN make -j$(nproc) release-static
 
 RUN mv /daemon/src/build/release/bin/* /daemon && rm -rf /daemon/src
 WORKDIR /daemon/
